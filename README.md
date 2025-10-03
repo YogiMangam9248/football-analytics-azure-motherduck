@@ -13,10 +13,6 @@ Explain your data flow in a diagram or list. Example:
 - Step 3: Transform with dbt  
 - Step 4: Visualize in Power BI  
 
-## 🚀 Features  
-- Feature 1  
-- Feature 2  
-- Feature 3  
 
 ## 🛠️ Prerequisites  
 - Python 3.10+  
