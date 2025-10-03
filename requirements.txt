@@ -1,0 +1,8 @@
+
+azure-functions
+requests
+python-dotenv
+dlt
+duckdb
+dbt-core
+
