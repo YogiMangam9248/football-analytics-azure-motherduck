@@ -2,7 +2,9 @@
 
 ## 📌 Overview  
 This project demonstrates a modern data engineering pipeline using free and serverless tools.  
-The pipeline fetches live football match data from a public API (Football data org), ingests it into **MotherDuck** via an **Azure Function**, transforms it using **dbt**, and finally visualizes insights in **Power BI**.
+The base pipeline fetches live football match data from a public API (Football data org), ingests it into **MotherDuck** via an **Azure Function**
+
+Transformations will be done using **dbt**, and I'm going to use **Power BI** for analytics.
 
 The goal is to showcase how to build a **low-cost, cloud-native, end-to-end analytics solution** that can be extended for real-world use cases such as sports analytics, real-time dashboards, and data reporting.
 
@@ -22,7 +24,7 @@ The data flow is as follows:
 - Azure Functions Core Tools  
 - MotherDuck account (Free)  
 - Power BI Desktop  
-- (Football data org)(Free)  
+- Football data org (Free)  
 
 ---
 
