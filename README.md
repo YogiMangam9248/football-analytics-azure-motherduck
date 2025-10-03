@@ -1,7 +1,10 @@
 # football-analytics-azure-motherduck
 
 ## 📌 Overview  
-Briefly describe what your project does and why you built it.  
+This project demonstrates a modern data engineering pipeline using free and serverless tools.
+The pipeline fetches football match data from a public API, ingests it into MotherDuck via an Azure Function, transforms it using dbt, and finally visualizes insights in Power BI.
+
+The goal is to showcase how to build a low-cost, cloud-native, end-to-end analytics solution that can be extended for real-world use cases such as sports analytics, real-time dashboards, and data reporting.  
 
 ## 🏗️ Architecture  
 Explain your data flow in a diagram or list. Example:  
