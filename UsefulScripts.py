@@ -1,16 +1,16 @@
-import azure.functions as func
+# reset_pipeline.py
 from dlt import pipeline, resource
+from dotenv import load_dotenv
 import requests
 import os
 from datetime import datetime
 
-# Read secrets from local.settings.json
+load_dotenv()
+# Read environment variables
 API_KEY = os.environ["FOOTBALL_API_KEY"]
-MOTHERDUCK_TOKEN = os.environ["MOTHERDUCK_TOKEN"]
+DB_NAME = os.environ.get("DB_NAME", "football_analytics")
 
-# Define the schema (database) name
-DB_NAME = os.environ["DB_NAME"]
-
+# Define football matches resource
 @resource
 def football_matches():
     url = "https://api.football-data.org/v4/competitions/PL/matches"
@@ -30,17 +30,15 @@ def football_matches():
             "fetched_at": datetime.utcnow()
         }
 
-# Configure DLT pipeline for incremental loading
+# Create pipeline in dev_mode=True to reset state
 football_pipeline = pipeline(
     pipeline_name="football_pipeline",
     destination="motherduck",
     dataset_name=f"{DB_NAME}.stg_matches",
-    dev_mode=False  # Incremental mode, do not drop/recreate tables
+    dev_mode=True  # full refresh / reset pipeline state
 )
 
-app = func.FunctionApp()
+# Run pipeline once to clear state and create tables
+football_pipeline.run(football_matches())
 
-# Timer trigger: run every 5 minutes, also on startup
-@app.schedule(schedule="*/5 * * * *", arg_name="mytimer", run_on_startup=True)
-def run_dlt_pipeline(mytimer: func.TimerRequest):
-    football_pipeline.run(football_matches())
+print("Pipeline reset complete. Resource tables created.")
